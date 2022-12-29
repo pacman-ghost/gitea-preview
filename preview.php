@@ -3,12 +3,12 @@
 // NOTE: There is a rewrite rule that sends $/preview/USER/REPO/PATH to here.
 
 // initialize
-define( "BASE_URL", "https://mysite.com" ) ; // <== put your Gitea's domain name here
+define( "BASE_URL", getenv('BASE_URL') ?? "https://mysite.com" ) ; // <== put your Gitea's domain name here
 
 // get the target arguments
 $user = $_GET[ "user" ] ; // nb: user or organization
 $repo = $_GET[ "repo" ] ;
-$branch = $_GET[ "branch" ] ?? "master" ;
+$branch = $_GET[ "branch" ] ?? getenv('DEFAULT_BRANCH') ?? "master" ;
 $path = $_GET[ "path" ] ;
 if ( $path[0] === "/" )
     $path = substr( $path, 1 ) ;
